@@ -30,13 +30,13 @@ class App extends React.Component{
     //이걸 선언해줘야 다른 곳에서 state접근 할때, this.state.속성  이런식으로 접근안하고 
     //바로 속성이름이로 접근 할 수 있음
     return (
-    <section class= "containers">
+    <section className= "containers">
       {isLoading ? (
-        <div class= "loader">
-          <span class="loader__text">Loading...</span>
+        <div className= "loader">
+          <span className="loader__text">Loading...</span>
         </div>
          ) : (
-          <div class="movies">
+          <div className="movies">
             {movies.map(movie => (
               <Movie
               key={movie.id}
@@ -45,6 +45,7 @@ class App extends React.Component{
               title={movie.title} 
               summary={movie.summary} 
               poster={movie.medium_cover_image}
+              genres={movie.genres}
               />
             ))}
           </div>

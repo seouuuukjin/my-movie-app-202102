@@ -1,3 +1,6 @@
+# page uploaded to ->
+https://seouuuukjin.github.io/my-movie-app-202102/
+
 # create - start - develop
 $npx create-react-app <"project name">
 

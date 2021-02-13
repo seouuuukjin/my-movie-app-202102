@@ -1,6 +1,8 @@
 import { func } from "prop-types";
-import React from "react"
-import axios from "axios"
+import React from "react";
+import axios from "axios";
+import Movie from "./Movie";
+import "./App.css";
 
 class App extends React.Component{
   state = {
@@ -16,7 +18,7 @@ class App extends React.Component{
     console.log(movies)
     //console.log(moviee.data.data.movies)
     this.setState({movies:movies, isLoading: false})
-    
+     
   }
   async componentDidMount(){
 
@@ -24,8 +26,31 @@ class App extends React.Component{
     //const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
   }
   render(){
-    const {isLoading} = this.state;
-    return <div>{isLoading ? "Loading" : "we are ready"}</div>;
+    const {isLoading, movies} = this.state;
+    //이걸 선언해줘야 다른 곳에서 state접근 할때, this.state.속성  이런식으로 접근안하고 
+    //바로 속성이름이로 접근 할 수 있음
+    return (
+    <section class= "containers">
+      {isLoading ? (
+        <div class= "loader">
+          <span class="loader__text">Loading...</span>
+        </div>
+         ) : (
+          <div class="movies">
+            {movies.map(movie => (
+              <Movie
+              key={movie.id}
+              id={movie.id} 
+              year={movie.year} 
+              title={movie.title} 
+              summary={movie.summary} 
+              poster={movie.medium_cover_image}
+              />
+            ))}
+          </div>
+         )}
+       </section>
+    );
   }
 }
 export default App;
